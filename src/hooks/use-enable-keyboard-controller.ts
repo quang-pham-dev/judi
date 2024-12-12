@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useFocusEffect } from '@react-navigation/native'
-import { KeyboardControllerRefCountContext } from '@/context/keyboard-controller'
+import { KeyboardControllerRefCountContext } from '@/context/keyboard-controller-context'
 
 export function useEnableKeyboardController(shouldEnable: boolean) {
   const { incrementRefCount, decrementRefCount } = useContext(
@@ -28,7 +28,9 @@ export function useEnableKeyboardControllerScreen(shouldEnable: boolean) {
       if (!shouldEnable) {
         return
       }
+
       incrementRefCount()
+
       return () => {
         decrementRefCount()
       }
