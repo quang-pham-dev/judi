@@ -1,0 +1,17 @@
+{
+  "platforms": [
+    "apple",
+    "android",
+    "web"
+  ],
+  "apple": {
+    "modules": [
+      "JudiNativeModule"
+    ]
+  },
+  "android": {
+    "modules": [
+      "com.modules.judinative.JudiNativeModule"
+    ]
+  }
+}
