@@ -12,6 +12,7 @@ A React Native mobile application built with Expo and TypeScript.
 
 ### State Management & Data Fetching
 - @tanstack/react-query 5.62.3
+- Context API
 
 ### UI & Navigation
 - @react-navigation/native 7.0.0

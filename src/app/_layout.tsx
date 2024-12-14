@@ -13,6 +13,9 @@ import 'react-native-reanimated'
 import { RootProvider } from '@/lib/providers/root-provider'
 import { useTheme } from '@/context/theme-context'
 
+// Boundary for error thrown by the Layout component.
+export { ErrorBoundary } from 'expo-router'
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
