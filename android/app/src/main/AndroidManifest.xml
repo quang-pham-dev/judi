@@ -30,6 +30,7 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="judi"/>
         <data android:scheme="com.judi.app"/>
+        <data android:scheme="exp+judi"/>
       </intent-filter>
     </activity>
   </application>

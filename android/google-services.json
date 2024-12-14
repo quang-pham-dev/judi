@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647545230968",
+    "project_id": "judi-40eba",
+    "storage_bucket": "judi-40eba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647545230968:android:4ed58a82094646e1e9ff8d",
+        "android_client_info": {
+          "package_name": "com.judi.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7tS5HnpnWMINzKzaMJQJG3_DENwrIey8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
