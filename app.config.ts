@@ -32,7 +32,8 @@ const defaultConfig = {
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: false,
-    bundleIdentifier: process.env.EXPO_PUBLIC_BUNDLE_IDENTIFIER,
+    bundleIdentifier:
+      process.env.EXPO_PUBLIC_BUNDLE_IDENTIFIER || 'com.judi.app',
     config: {
       usesNonExemptEncryption: false,
     },
@@ -50,7 +51,7 @@ const defaultConfig = {
       foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#ffffff',
     },
-    package: process.env.EXPO_PUBLIC_BUNDLE_IDENTIFIER,
+    package: process.env.EXPO_PUBLIC_BUNDLE_IDENTIFIER || 'com.judi.app',
     googleServicesFile: './google-services.json',
   },
   web: {
