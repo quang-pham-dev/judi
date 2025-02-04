@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native'
+import { Dimensions, FlexStyle } from 'react-native'
 import { COLORS } from './colors'
 import { TYPOGRAPHY } from './typography'
 
@@ -33,9 +33,28 @@ const heading = {
   // Other heading styles
 }
 
+// Spacing types
+export type ISpacing = Pick<
+  FlexStyle,
+  | 'margin'
+  | 'marginVertical'
+  | 'marginHorizontal'
+  | 'marginLeft'
+  | 'marginRight'
+  | 'marginTop'
+  | 'marginBottom'
+  | 'padding'
+  | 'paddingVertical'
+  | 'paddingHorizontal'
+  | 'paddingLeft'
+  | 'paddingRight'
+  | 'paddingTop'
+  | 'paddingBottom'
+>
+
 export const METRICS = {
   screenHeight,
   screenWidth,
   borderRadius,
   heading,
-}
+} as const

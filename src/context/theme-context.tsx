@@ -8,12 +8,16 @@ import React, {
 import { Appearance } from 'react-native'
 import { useStorageState } from '@/hooks/use-storage-state'
 import { StorageKeys } from '@/constants/factory-key'
-import { THEME_MODE } from '@/constants/common'
+import { THEME_MODE } from '@/constants/theme'
 
 type Theme = typeof THEME_MODE.LIGHT | typeof THEME_MODE.DARK
 
+export type ThemeMode = 'system' | 'light' | 'dark'
+
 interface ThemeContextType {
   theme: Theme
+  themeMode: ThemeMode
+  setThemeMode: (mode: ThemeMode) => void
   toggleTheme: () => void
 }
 
@@ -21,27 +25,61 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [themeState, setThemeState] = useStorageState(StorageKeys.USER_THEME)
-  const themePersisted = themeState[1] as Theme
+  const [themeModeState, setThemeModeState] = useStorageState(
+    StorageKeys.THEME_MODE,
+  )
+
+  const [themeMode, setThemeMode] = useState<ThemeMode>(
+    (themeModeState[1] as ThemeMode) || 'system',
+  )
 
   const [theme, setTheme] = useState<Theme>(
-    themePersisted || Appearance.getColorScheme() || 'light',
+    (themeState[1] as Theme) || Appearance.getColorScheme() || 'light',
   )
 
   useEffect(() => {
-    const cachedTheme = themePersisted
-    if (cachedTheme) {
-      setTheme(cachedTheme as Theme)
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+      if (themeMode === 'system' && colorScheme) {
+        setTheme(colorScheme as Theme)
+        setThemeState(colorScheme)
+      }
+    })
+
+    return () => {
+      subscription.remove()
     }
-  }, [themePersisted])
+  }, [themeMode])
+
+  const updateThemeMode = (mode: ThemeMode) => {
+    setThemeMode(mode)
+    setThemeModeState(mode)
+
+    if (mode === 'system') {
+      const systemTheme = Appearance.getColorScheme() || 'light'
+      setTheme(systemTheme as Theme)
+      setThemeState(systemTheme)
+    } else {
+      setTheme(mode as Theme)
+      setThemeState(mode)
+    }
+  }
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     setThemeState(newTheme)
+    setThemeMode(newTheme)
+    setThemeModeState(newTheme)
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        themeMode,
+        setThemeMode: updateThemeMode,
+        toggleTheme,
+      }}>
       {children}
     </ThemeContext.Provider>
   )
