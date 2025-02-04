@@ -9,6 +9,7 @@ import {
 import { ThemedText } from '@/components/ThemedText'
 import { LanguagesProvider } from '@/context/language-context'
 import { ThemeProvider } from '@/context/theme-context'
+import { KeyboardControllerProvider } from '@/context/keyboard-controller-context'
 import I18nProvider from '@/locale/i18nProvider'
 
 const styles = StyleSheet.create({
@@ -24,7 +25,9 @@ export function RootProvider({ children }: Readonly<PropsWithChildren>) {
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ThemeProvider>
             <LanguagesProvider>
-              <I18nProvider>{children}</I18nProvider>
+              <KeyboardControllerProvider>
+                <I18nProvider>{children}</I18nProvider>
+              </KeyboardControllerProvider>
             </LanguagesProvider>
           </ThemeProvider>
         </SafeAreaProvider>
