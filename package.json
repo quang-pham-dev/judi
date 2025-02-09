@@ -45,6 +45,8 @@
     "@gorhom/bottom-sheet": "^5.0.6",
     "@lingui/core": "^5.1.0",
     "@lingui/react": "^5.1.0",
+    "@react-native-firebase/app": "^21.7.1",
+    "@react-native-firebase/messaging": "^21.7.1",
     "@react-navigation/native": "^7.0.0",
     "@shopify/flash-list": "1.7.1",
     "@shopify/react-native-skia": "^1.7.3",
